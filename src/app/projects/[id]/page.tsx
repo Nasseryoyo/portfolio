@@ -1,7 +1,4 @@
-// File: app/projects/[id]/page.tsx
-"use client";
-
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ProjectForm from "@/components/ProjectForm";
 
