@@ -4,13 +4,14 @@
 import { useEffect, useState } from "react";
 import ProjectCard from "@/components/ProjectCard";
 import Link from "next/link";
+import { Project } from "@prisma/client";
 
 export default function ProjectsPage() {
 	const [projects, setProjects] = useState([]);
 
 	useEffect(() => {
 		async function fetchProjects() {
-			const res = await fetch("/api/projects");
+			const res = await fetch("/api/projects/list");
 			const data = await res.json();
 			setProjects(data);
 		}
@@ -27,7 +28,7 @@ export default function ProjectsPage() {
 				+ Add Project
 			</Link>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-				{projects.map((project) => (
+				{projects.map((project: Project) => (
 					<ProjectCard key={project.id} project={project} />
 				))}
 			</div>

@@ -3,8 +3,18 @@ import { Project } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export async function GET() {
-	const projects = await prisma.project.findMany();
-	return NextResponse.json(projects);
+	try {
+		const projects = await prisma.project.findMany({
+			take: 6,
+			orderBy: { createdAt: "desc" },
+		});
+		return NextResponse.json(projects);
+	} catch (error) {
+		return NextResponse.json(
+			{ error: "Failed to fetch projects" },
+			{ status: 500 }
+		);
+	}
 }
 
 export async function POST(req: Request) {

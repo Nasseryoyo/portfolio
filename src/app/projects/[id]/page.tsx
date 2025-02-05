@@ -1,6 +1,8 @@
+"use client";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ProjectForm from "@/components/ProjectForm";
+import { Project } from "@prisma/client";
 
 export default function ProjectDetailPage() {
 	const [project, setProject] = useState(null);

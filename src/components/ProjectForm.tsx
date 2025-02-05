@@ -3,14 +3,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Project } from "@prisma/client";
 
-export default function ProjectForm({ project }) {
-	const [name, setName] = useState(project?.name || "");
+export default function ProjectForm({ project }: { project: Project }) {
+	const [name, setName] = useState(project?.title || "");
 	const [description, setDescription] = useState(project?.description || "");
-	const [link, setLink] = useState(project?.link || "");
+	const [link, setLink] = useState(project?.repoLink || "");
 	const router = useRouter();
 
-	async function handleSubmit(e) {
+	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		const method = project ? "PUT" : "POST";
